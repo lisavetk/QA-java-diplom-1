@@ -112,4 +112,7 @@ _🏁 Покрытие кода должно быть 100%._
 * «Соусы»; 
 * «Начинки».
 
+## Примечание
+[Ссылка на веб-приложение Stellar Burgers](https://stellarburgers.nomoreparties.site/)
+
 
