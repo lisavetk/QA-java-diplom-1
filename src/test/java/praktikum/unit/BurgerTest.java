@@ -92,4 +92,9 @@ public class BurgerTest {
         burger.getPrice();
     }
 
+    @Test(expected = NullPointerException.class)
+    public void shouldReturnReceiptWithoutBunAndIngredient() {
+        burger.getReceipt();
+    }
+
 }
