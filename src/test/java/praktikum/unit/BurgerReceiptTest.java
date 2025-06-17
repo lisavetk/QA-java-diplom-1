@@ -12,6 +12,7 @@ import java.util.List;
 
 import static org.junit.Assert.assertEquals;
 import static praktikum.unit.TestData.*;
+import static praktikum.unit.TestMocks.*;
 import static praktikum.unit.TestsMessage.*;
 
 @RunWith(Parameterized.class)
@@ -46,13 +47,13 @@ public class BurgerReceiptTest {
     @Parameterized.Parameters(name = "{index}: {0}")
     public static Object[][] getData() {
         return new Object[][] {
-                {"Only Bun", TEST_BUN, List.of(), createReceipt(TEST_BUN, List.of(), EXPECTED_PRICE_ONLY_BUN)},
-                {"Bun + meat + sauce", TEST_BUN, List.of(TEST_INGREDIENT_MEAT, TEST_INGREDIENT_SAUCE),
-                        createReceipt(TEST_BUN, List.of(TEST_INGREDIENT_MEAT, TEST_INGREDIENT_SAUCE), EXPECTED_PRICE_BUN_MEAT_SAUCE)},
-                {"Bun + meat", TEST_BUN, List.of(TEST_INGREDIENT_MEAT),
-                        createReceipt(TEST_BUN, List.of(TEST_INGREDIENT_MEAT), EXPECTED_PRICE_BUN_MEAT)},
-                {"Bun + sauce", TEST_BUN, List.of(TEST_INGREDIENT_SAUCE),
-                        createReceipt(TEST_BUN, List.of(TEST_INGREDIENT_SAUCE), EXPECTED_PRICE_BUN_SAUCE)},
+                {"Only Bun", getMockBun(), List.of(), createReceipt(getMockBun(), List.of(), EXPECTED_PRICE_ONLY_BUN)},
+                {"Bun + meat + sauce", getMockBun(), List.of(getMockMeat(), getMockSauce()),
+                        createReceipt(getMockBun(), List.of(getMockMeat(), getMockSauce()), EXPECTED_PRICE_BUN_MEAT_SAUCE)},
+                {"Bun + meat", getMockBun(), List.of(getMockMeat()),
+                        createReceipt(getMockBun(), List.of(getMockMeat()), EXPECTED_PRICE_BUN_MEAT)},
+                {"Bun + sauce", getMockBun(), List.of(getMockSauce()),
+                        createReceipt(getMockBun(), List.of(getMockSauce()), EXPECTED_PRICE_BUN_SAUCE)},
         };
     }
 
