@@ -10,4 +10,5 @@ public class TestsMessage {
     public static final String MESSAGE_INGREDIENT_SHOULD_STAY = "Ингредиент должен остаться на том же месте";
     public static final String MESSAGE_WRONG_PRICE = "Цена рассчитывается неверно";
     public static final String MESSAGE_WRONG_RECEIPT = "Чек создается неверно";
+    public static final String MESSAGE_COUNT_INGREDIENTS_NOT_MATCH = "Количество ингредиентов не совпало";
 }

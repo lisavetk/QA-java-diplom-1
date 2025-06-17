@@ -3,6 +3,7 @@ package praktikum.unit;
 import org.junit.Before;
 import org.junit.Test;
 import praktikum.Burger;
+import org.assertj.core.api.SoftAssertions;
 
 import static org.junit.Assert.*;
 import static praktikum.unit.TestsMessage.*;
@@ -34,9 +35,14 @@ public class BurgerTest {
     public void shouldAddSameIngredients() {
         burger.addIngredient(TEST_INGREDIENT_MEAT);
         burger.addIngredient(TEST_INGREDIENT_MEAT);
-        assertEquals(MESSAGE_INGREDIENT_NOT_MATCH, TEST_INGREDIENT_MEAT, burger.ingredients.get(0));
-        assertEquals(MESSAGE_INGREDIENT_NOT_MATCH, TEST_INGREDIENT_MEAT, burger.ingredients.get(1));
-        assertEquals(2, burger.ingredients.size());
+
+        SoftAssertions softAssertions = new SoftAssertions();
+        softAssertions.assertThat(burger.ingredients.get(0)).as(MESSAGE_INGREDIENT_NOT_MATCH).isEqualTo(TEST_INGREDIENT_MEAT);
+        softAssertions.assertThat(burger.ingredients.get(1)).as(MESSAGE_INGREDIENT_NOT_MATCH).isEqualTo(TEST_INGREDIENT_MEAT);
+        softAssertions.assertThat(burger.ingredients.size())
+                .as(MESSAGE_COUNT_INGREDIENTS_NOT_MATCH)
+                .isEqualTo(2);
+
     }
 
     @Test
@@ -59,9 +65,11 @@ public class BurgerTest {
         burger.addIngredient(TEST_INGREDIENT_SAUCE);
 
         burger.moveIngredient(1, 0);
-        assertEquals(MESSAGE_INGREDIENT_NOT_MOVE, TEST_INGREDIENT_TOMATO, burger.ingredients.get(0));
-        assertEquals(MESSAGE_INGREDIENT_FROM_NEW_POSITION, TEST_INGREDIENT_MEAT, burger.ingredients.get(1));
-        assertEquals(MESSAGE_INGREDIENT_NOT_AFFECTED_MOVE, TEST_INGREDIENT_SAUCE, burger.ingredients.get(2));
+
+        SoftAssertions softAssertions = new SoftAssertions();
+        softAssertions.assertThat(burger.ingredients.get(0)).as(MESSAGE_INGREDIENT_NOT_MOVE).isEqualTo(TEST_INGREDIENT_TOMATO);
+        softAssertions.assertThat(burger.ingredients.get(1)).as(MESSAGE_INGREDIENT_FROM_NEW_POSITION).isEqualTo(TEST_INGREDIENT_MEAT);
+        softAssertions.assertThat(burger.ingredients.get(2)).as(MESSAGE_INGREDIENT_NOT_AFFECTED_MOVE).isEqualTo(TEST_INGREDIENT_SAUCE);
     }
 
     @Test(expected = IndexOutOfBoundsException.class)
